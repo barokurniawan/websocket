@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>WebSocket</title>
+</head>
+
+<body>
+    <script type="text/javascript">
+        const SOCKET_CHANNEL = "PITSTOP_FIRST";
+        window.customSocket = {};
+
+        window.customSocket.init = function () {
+            if (!(window.WebSocket)) {
+                console.log("Browser doesnot support websocket");
+                return
+            }
+
+            window.customSocket = new WebSocket("ws://localhost:8080/socket?channel=" + SOCKET_CHANNEL)
+
+            window.customSocket.onopen = function () {
+                console.log("Connect to websocket, send and receive on chanel " + SOCKET_CHANNEL);
+            }
+
+            window.customSocket.onmessage = function (event) {
+                console.log(event);
+            }
+
+            window.customSocket.onclose = function () {
+                console.log("Disconnected from websocket");
+            }
+        }
+
+        window.customSocket.doSendMessage = function () {
+            window.customSocket.send(JSON.stringify({
+                Channel: SOCKET_CHANNEL,
+                Message: "CHANGE"
+            }));
+        }
+
+        window.onload = window.customSocket.init
+    </script>
+</body>
+
+</html>
