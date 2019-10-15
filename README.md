@@ -7,3 +7,5 @@ sebuah halaman berdasarkan interaksi dihalaman lain, ini lebih efisien dari pada
 2. install [go-dep](https://github.com/golang/dep)
 3. jalankan `dep ensure` untuk menginstall dependency
 
+# Thanks
+[Noval Agung](https://github.com/novalagung/dasarpemrogramangolang) - tutorial web socket
