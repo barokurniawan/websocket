@@ -6,7 +6,7 @@ import (
 	"net/http"
 
 	"github.com/barokurniawan/websocket/sockethandler"
-	"github.com/barokurniawan/websocket/tructure"
+	"github.com/barokurniawan/websocket/structure"
 	"github.com/gorilla/websocket"
 )
 
@@ -43,7 +43,7 @@ func main() {
 			http.Error(w, "Could not open websocket connection", http.StatusBadRequest)
 		}
 
-		currentConn := tructure.WebSocketConnection{Conn: currentGorillaConn, Channel: string(channel[0])}
+		currentConn := structure.WebSocketConnection{Conn: currentGorillaConn, Channel: string(channel[0])}
 		sockethandler.Connections = append(sockethandler.Connections, &currentConn)
 
 		go sockethandler.HandleIO(&currentConn, sockethandler.Connections)
