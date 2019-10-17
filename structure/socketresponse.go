@@ -1,4 +1,4 @@
-package tructure
+package structure
 
 type SocketResponse struct {
 	Message string

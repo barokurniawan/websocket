@@ -5,15 +5,15 @@ import (
 	"log"
 	"strings"
 
-	"github.com/barokurniawan/websocket/tructure"
+	"github.com/barokurniawan/websocket/structure"
 	"github.com/novalagung/gubrak"
 )
 
 //Connections a bucket for every connection
-var Connections = make([]*tructure.WebSocketConnection, 0)
+var Connections = make([]*structure.WebSocketConnection, 0)
 
 //HandleIO handler input and output
-func HandleIO(currentConn *tructure.WebSocketConnection, Connections []*tructure.WebSocketConnection) {
+func HandleIO(currentConn *structure.WebSocketConnection, Connections []*structure.WebSocketConnection) {
 	defer func() {
 		if r := recover(); r != nil {
 			log.Println("ERROR", fmt.Sprintf("%v", r))
@@ -21,7 +21,7 @@ func HandleIO(currentConn *tructure.WebSocketConnection, Connections []*tructure
 	}()
 
 	for {
-		payload := tructure.SocketPayload{}
+		payload := structure.SocketPayload{}
 		err := currentConn.ReadJSON(&payload)
 		if err != nil {
 			if strings.Contains(err.Error(), "websocket: close") {
@@ -38,7 +38,7 @@ func HandleIO(currentConn *tructure.WebSocketConnection, Connections []*tructure
 }
 
 //broadcastMessage sent message through every connection
-func broadcastMessage(currentConn *tructure.WebSocketConnection, message string) {
+func broadcastMessage(currentConn *structure.WebSocketConnection, message string) {
 	for _, eachConn := range Connections {
 		if eachConn == currentConn {
 			continue
@@ -46,7 +46,7 @@ func broadcastMessage(currentConn *tructure.WebSocketConnection, message string)
 
 		//just send message to the same channel
 		if eachConn.Channel == currentConn.Channel {
-			eachConn.WriteJSON(tructure.SocketResponse{
+			eachConn.WriteJSON(structure.SocketResponse{
 				Message: message,
 			})
 		}
@@ -54,10 +54,10 @@ func broadcastMessage(currentConn *tructure.WebSocketConnection, message string)
 }
 
 //ejectConnection there is some error or unwanted connection? eject!!!
-func ejectConnection(currentConn *tructure.WebSocketConnection) {
-	filtered, _ := gubrak.Reject(Connections, func(each *tructure.WebSocketConnection) bool {
+func ejectConnection(currentConn *structure.WebSocketConnection) {
+	filtered, _ := gubrak.Reject(Connections, func(each *structure.WebSocketConnection) bool {
 		return each == currentConn
 	})
 
-	Connections = filtered.([]*tructure.WebSocketConnection)
+	Connections = filtered.([]*structure.WebSocketConnection)
 }
