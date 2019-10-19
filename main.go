@@ -49,6 +49,6 @@ func main() {
 		go sockethandler.HandleIO(&currentConn, sockethandler.Connections)
 	})
 
-	fmt.Println("Server starting at :8080")
-	http.ListenAndServe(":8080", nil)
+	fmt.Println("Server starting at :3001")
+	http.ListenAndServe(":3001", nil)
 }
