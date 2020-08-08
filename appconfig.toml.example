@@ -1,0 +1,3 @@
+Port = ":3001"
+Address = "127.0.0.1"
+AllowedOrigins = ["your-host-1", "your-host-2"]
