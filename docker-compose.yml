@@ -3,7 +3,7 @@ networks:
     websocket_network:
         driver: bridge
 services:
-    app:
+    websocket_app:
         networks:
             - websocket_network
         build:
