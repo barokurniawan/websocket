@@ -1,31 +1,25 @@
 # websocket
-library ini adalah hasil pengembangan dari chat app webscoket noval agung, untuk dokumentasi asli  [klik disini](https://dasarpemrogramangolang.novalagung.com/C-28-golang-web-socket.html). Saya menggunakan websocket ini untuk melakukan update pada 
-sebuah halaman berdasarkan interaksi dihalaman lain, ini lebih efisien dari pada menggunakan sistem polling ajax.
+Saya menggunakan service ini untuk melakukan update pada sebuah halaman berdasarkan interaksi dihalaman lain, ini lebih efisien dari pada menggunakan long polling ajax.
 
 # INSTALASI
-1. clone repository ini
+1. clone repository ini `git clone git@github.com:barokurniawan/websocket.git`
 2. install [go-dep](https://github.com/golang/dep)
 3. jalankan `dep ensure` untuk menginstall dependency
 
 # Menjalankan Contoh
-masuk ke folder project lalu ketikan "go run main.go" .disini host yang digunakan localhost dengan port 3001.
-Untuk pengaksesan simulasi :
- - akses channel PITSTOP_FIRST
-    localhost:3001/
- - akses channel MINE
-    localhost:3001/other
+- Rename file appconfig.toml.example menjadi appconfig.toml `cp appconfig.toml.example appconfig.toml`
+  Konfigurasi Address, Port, AllowedOrigins ada di file ini.
 
-Prinsip kerja nya sama seperti chat group, setiap pesan yang di kirim hanya bisa dibaca oleh connection yang ada 
-pada channel yang sama. 
-Buka masing masing halaman simulasi diatas pada browser biasa dan incognito, 
-kemudia ketik di console : 
+- Ketikan `go run main.go`
+- Buka http://localhost:3001/ atau dengan yang sesuai di file appconfig.toml 
+  Buka address tersebut di 2 tab, regular dan incognito 
+- ketik di console dan cek di masing-masing console : 
 ```
 window.customSocket.send(JSON.stringify({
     Channel: "MINE", //channel bisa diganti dengan PITSTOP_FIRST atau MINE
     Message: "CHANGE"
 }));
 ```
-
 
 # Thanks
 [Noval Agung](https://github.com/novalagung/dasarpemrogramangolang) - tutorial web socket
