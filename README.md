@@ -45,5 +45,11 @@ Saya menggunakan service ini untuk melakukan update pada sebuah halaman berdasar
 </script>
 ```
 
+```
+window.customSocket.send(JSON.stringify({
+    Channel: "PITSTOP_FIRST", // or MINE
+    Message: "CHANGE"
+}));
+```
 ### Thanks
 [Noval Agung](https://github.com/novalagung/dasarpemrogramangolang) - tutorial web socket
