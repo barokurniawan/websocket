@@ -1,2 +1,4 @@
 vendor/
 appconfig.toml
+__debug_bin
+launch.json

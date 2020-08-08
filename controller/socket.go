@@ -18,6 +18,11 @@ func SocketHandler(w http.ResponseWriter, r *http.Request) {
 	}
 
 	originHost := strings.Split(r.Header.Get("Origin"), "://")
+	if len(originHost) < 2 {
+		http.Error(w, "Invalid origin!", http.StatusBadRequest)
+		return
+	}
+
 	host := originHost[1]
 	if exists, _ := helper.InArray(host, context.Config.AllowedOrigins); exists == false {
 		http.Error(w, "Invalid origin!", http.StatusForbidden)
