@@ -1,4 +1,4 @@
-package structure
+package payload
 
 type SocketResponse struct {
 	Message string

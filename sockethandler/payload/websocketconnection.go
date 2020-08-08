@@ -1,4 +1,4 @@
-package structure
+package payload
 
 import "github.com/gorilla/websocket"
 
