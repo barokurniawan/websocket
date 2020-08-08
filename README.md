@@ -6,6 +6,9 @@ Saya menggunakan service ini untuk melakukan update pada sebuah halaman berdasar
 2. install [go-dep](https://github.com/golang/dep)
 3. jalankan `dep ensure` untuk menginstall dependency
 
+## Menggunakan Docker 
+- `docker-compose up --build`
+
 ## RUN
 ```
 <script type="text/javascript">
