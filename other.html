@@ -16,7 +16,7 @@
                 return
             }
 
-            window.customSocket = new WebSocket("ws://localhost:8080/socket?channel=" + SOCKET_CHANNEL)
+            window.customSocket = new WebSocket("ws://localhost:3001/socket?channel=" + SOCKET_CHANNEL)
 
             window.customSocket.onopen = function () {
                 console.log("Connect to websocket, send and receive on chanel " + SOCKET_CHANNEL);

@@ -34,7 +34,7 @@ func main() {
 	http.HandleFunc("/socket", func(w http.ResponseWriter, r *http.Request) {
 		channel, ok := r.URL.Query()["channel"]
 		if !ok || len(channel[0]) < 1 {
-			http.Error(w, "missing changel parameter", http.StatusBadRequest)
+			http.Error(w, "missing chanel parameter", http.StatusBadRequest)
 			return
 		}
 
@@ -50,5 +50,5 @@ func main() {
 	})
 
 	fmt.Println("Server starting at :3001")
-	http.ListenAndServe(":3001", nil)
+	http.ListenAndServe(":3100", nil)
 }
