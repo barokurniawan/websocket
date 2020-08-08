@@ -11,10 +11,7 @@ import (
 func main() {
 	context.LoadConfig()
 
-	http.HandleFunc("/", controller.IndexHandler)
-	http.HandleFunc("/other", controller.OtherHandler)
 	http.HandleFunc("/socket", controller.SocketHandler)
-
 	fmt.Println("Server starting at " + context.Config.Address + context.Config.Port)
 	http.ListenAndServe(context.Config.Address+context.Config.Port, nil)
 }

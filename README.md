@@ -6,16 +6,43 @@ Saya menggunakan service ini untuk melakukan update pada sebuah halaman berdasar
 2. install [go-dep](https://github.com/golang/dep)
 3. jalankan `dep ensure` untuk menginstall dependency
 
-## Menjalankan Contoh
-- Rename file appconfig.toml.example menjadi appconfig.toml `cp appconfig.toml.example appconfig.toml`
-- Ketikan `go run main.go`
-- Buka http://localhost:3001/ atau dengan yang sesuai di file appconfig.toml. Buka address tersebut di 2 tab, regular dan incognito 
-- ketik di console dan cek di masing-masing console : 
+## RUN
 ```
-window.customSocket.send(JSON.stringify({
-    Channel: "PITSTOP_FIRST", //channel bisa diganti dengan PITSTOP_FIRST atau MINE
-    Message: "CHANGE"
-}));
+<script type="text/javascript">
+    const SOCKET_CHANNEL = "PITSTOP_FIRST";
+    window.customSocket = {};
+
+    window.customSocket.init = function () {
+        if (!(window.WebSocket)) {
+            console.log("Browser doesnot support websocket");
+            return
+        }
+
+        window.customSocket = new WebSocket("ws://localhost:3001/socket?channel=" + SOCKET_CHANNEL)
+
+        window.customSocket.onopen = function () {
+            console.log("Connect to websocket, send and receive on chanel " + SOCKET_CHANNEL);
+        }
+
+        window.customSocket.onmessage = function (event) {
+            console.log("incoming...");
+            console.log(event);
+        }
+
+        window.customSocket.onclose = function () {
+            console.log("Disconnected from websocket");
+        }
+    }
+
+    window.customSocket.doSendMessage = function () {
+        window.customSocket.send(JSON.stringify({
+            Channel: SOCKET_CHANNEL,
+            Message: "CHANGE"
+        }));
+    }
+
+    window.onload = window.customSocket.init
+</script>
 ```
 
 ### Thanks
