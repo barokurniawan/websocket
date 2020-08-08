@@ -1,0 +1,17 @@
+version: '3'
+networks:
+    websocket_network:
+        driver: bridge
+services:
+    app:
+        networks:
+            - websocket_network
+        build:
+            context: ./
+            dockerfile: app.dockerfile
+        container_name: websocket_app
+        restart: always
+        volumes:
+            - ./:/var/www
+        ports:
+            - "3001:3001"
