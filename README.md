@@ -8,15 +8,12 @@ Saya menggunakan service ini untuk melakukan update pada sebuah halaman berdasar
 
 # Menjalankan Contoh
 - Rename file appconfig.toml.example menjadi appconfig.toml `cp appconfig.toml.example appconfig.toml`
-  Konfigurasi Address, Port, AllowedOrigins ada di file ini.
-
 - Ketikan `go run main.go`
-- Buka http://localhost:3001/ atau dengan yang sesuai di file appconfig.toml 
-  Buka address tersebut di 2 tab, regular dan incognito 
+- Buka http://localhost:3001/ atau dengan yang sesuai di file appconfig.toml. Buka address tersebut di 2 tab, regular dan incognito 
 - ketik di console dan cek di masing-masing console : 
 ```
 window.customSocket.send(JSON.stringify({
-    Channel: "MINE", //channel bisa diganti dengan PITSTOP_FIRST atau MINE
+    Channel: "PITSTOP_FIRST", //channel bisa diganti dengan PITSTOP_FIRST atau MINE
     Message: "CHANGE"
 }));
 ```
